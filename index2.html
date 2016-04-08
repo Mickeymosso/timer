@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body{
+      font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+      background-color: black;
+      color: white;
+      }
+      .inline{
+        display : inline-block;
+        vertical-align:top;
+      }
+      .inline span{
+        font-size: 100px;
+      }
+    </style>
+  </head>
+  <body>
+
+<div class="inline">
+    <form id="request" action="#">
+      <input type="number" id="hour" value="" min="0" max="100"></input>
+      <input type="number" id="minute" value="" min="0" max="59"></input>
+      <input type="number" id="second" value="" min="0" max="59"></input>
+      <input type="submit">
+      <button id="start">Start</button>
+      <button id="reset">Reset</button>
+    </form>
+
+
+</div>
+
+<div class="inline">
+<span id="H"></span><span id="M"></span><span id="S"></span>
+</div>
+
+    <script src="main2.js" charset="utf-8"></script>
+  </body>
+</html>
