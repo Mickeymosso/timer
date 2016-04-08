@@ -9,18 +9,20 @@
       background-color: black;
       color: white;
       }
-      .inline{
+      .inputs{
         display : inline-block;
         vertical-align:top;
       }
-      .inline span{
+      #timer{
+        display : inline-block;
+        vertical-align:top;
         font-size: 100px;
       }
     </style>
   </head>
   <body>
 
-<div class="inline">
+<div id="inputs">
     <form id="request" action="#">
       <input type="number" id="hour" value="" min="0" max="100"></input>
       <input type="number" id="minute" value="" min="0" max="59"></input>
@@ -29,12 +31,10 @@
       <button id="start">Start</button>
       <button id="reset">Reset</button>
     </form>
-
-
 </div>
 
-<div class="inline">
-<span id="H"></span><span id="M"></span><span id="S"></span>
+<div id="timer">
+<span id="H">00</span>:<span id="M">00</span>:<span id="S">00</span>
 </div>
 
     <script src="main2.js" charset="utf-8"></script>

@@ -4,40 +4,13 @@ var timeInput = document.getElementById('request');
 timeInput.addEventListener("submit", addtime);
 
 function addtime (){
-
   var hours = document.getElementById('hour').value;
   var minutes = document.getElementById('minute').value;
   var seconds = document.getElementById('second').value;
 
-  if (hours<10){
-    document.getElementById('H').innerHTML='0'+hours+':';
-  }
-  else{document.getElementById('H').innerHTML=hours+':';
-}
-
-if (minutes<10){
-  document.getElementById('M').innerHTML='0'+minutes+':';
-}
-else{document.getElementById('M').innerHTML=minutes+':';
-}
-
-if (seconds<10){
-  document.getElementById('S').innerHTML='0'+seconds;
-}
-else{document.getElementById('S').innerHTML=seconds;
-}
-
-if (hours===""){
-  document.getElementById('H').innerHTML='00'+':';
-}
-
-if (minutes===""){
-  document.getElementById('M').innerHTML='00'+':';
-}
-
-if (seconds===""){
-  document.getElementById('S').innerHTML='00';
-}
+  document.getElementById('H').innerHTML = formatInt(hours,2);
+  document.getElementById('M').innerHTML = formatInt(minutes,2);
+  document.getElementById('S').innerHTML = formatInt(seconds,2);
 }
 
 var launchSession = document.getElementById('start');
@@ -72,11 +45,10 @@ function launchtimer (){
     
     var i=1000;
     if (resultDateMs===currentDateMs){
-      document.getElementById('H').innerHTML='00'+':';
-      document.getElementById('M').innerHTML='00'+':';
+      document.getElementById('H').innerHTML='00';
+      document.getElementById('M').innerHTML='00';
       document.getElementById('S').innerHTML='00';
-    } else
-    {
+    } else {
       diffDateMs -= i;
     }
 
@@ -84,29 +56,26 @@ function launchtimer (){
     var resultMinutes = Math.floor( (diffDateMs/1000/60) % 60 );
     var resultSeconds = Math.floor( (diffDateMs/1000) % 60 );
 
-    if(resultHours<10){
-      document.getElementById('H').innerHTML='0'+resultHours+':';
+    document.getElementById('H').innerHTML = formatInt(resultHours, 2);
+    document.getElementById('M').innerHTML = formatInt(resultMinutes, 2);
+    document.getElementById('S').innerHTML = formatInt(resultSeconds, 2);
+
+    if(resultSeconds<10){
+      document.getElementById('S').innerHTML='0'+resultSeconds;
     }
-    else{document.getElementById('H').innerHTML=resultHours+':';
-  }
+    else{document.getElementById('S').innerHTML=resultSeconds;
+    }
 
-  if(resultMinutes<10){
-    document.getElementById('M').innerHTML='0'+resultMinutes+':';
-  }
-  else{document.getElementById('M').innerHTML=resultMinutes+':';
+    if(diffDateMs===0){
+      clearInterval(timeInterval);
+    }
+    // console.log(resultSeconds);
+  },1000);
 }
 
-if(resultSeconds<10){
-  document.getElementById('S').innerHTML='0'+resultSeconds;
-}
-else{document.getElementById('S').innerHTML=resultSeconds;
-}
-
-if(diffDateMs===0){
-  clearInterval(timeInterval);
-}
-// console.log(resultSeconds);
-},1000);
-
-
+function formatInt(time, size){
+  var count = (count>0) ? Math.log10(time) : 0;
+  var result = "";
+  for (var i = 0; i < size-count-1; i++) result += "0";
+  return result+time;
 }
